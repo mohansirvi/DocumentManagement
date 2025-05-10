@@ -4,6 +4,8 @@ using DocumentManagement.Models.DTO;
 using DocumentManagement.Models;
 using Microsoft.EntityFrameworkCore;
 using DocumentManagement.Services.IService;
+using System.Text.Json;
+using System.Text;
 
 namespace DocumentManagement.Services
 {
@@ -52,11 +54,11 @@ namespace DocumentManagement.Services
                 _context.IngestionRequests.Add(ingestion);
                 await _context.SaveChangesAsync();
 
-                //var payload = JsonSerializer.Serialize(new { documentId = dto.DocumentId });
-                //var content = new StringContent(payload, Encoding.UTF8, "application/json");
+                var payload = JsonSerializer.Serialize(new { documentId = dto.DocumentId });
+                var content = new StringContent(payload, Encoding.UTF8, "application/json");
 
-                //var response = await _httpClient.PostAsync($"{_baseUrl}/ingest", content);
-                //response.EnsureSuccessStatusCode();
+                var response = await _httpClient.PostAsync($"{_baseUrl}/ingest", content);
+                response.EnsureSuccessStatusCode();
 
                 ingestion.Status = IngestionStatus.InProgress.ToString();
                 await _context.SaveChangesAsync();
