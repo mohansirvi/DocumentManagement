@@ -82,6 +82,8 @@ The **DocumentManagement** project is a robust and scalable document management 
 
 - `POST /api/auth/register` – Register a new user
 - `POST /api/auth/login` – Get JWT token after login
+- `POST /api/auth/logout` – Logout - Invalidate token
+- `POST /api/auth/set-role` – Update role for existing user
 
 - ![AuthorizedSwagger](https://github.com/user-attachments/assets/599481ff-c4dc-4319-ab25-69ca22d7bd4a)
 - ![AuthorizedUsingBearer](https://github.com/user-attachments/assets/e7491129-ffb3-45f9-ad36-cf81387cfe6a)
@@ -89,6 +91,9 @@ The **DocumentManagement** project is a robust and scalable document management 
 - ![login](https://github.com/user-attachments/assets/18ea9490-6394-42f9-b676-15c867f2f2ea)
 - ![PasswordValidation](https://github.com/user-attachments/assets/635d57b9-dd6a-45d2-8bd5-a05938ddadb6)
 - ![UsersTable](https://github.com/user-attachments/assets/87aabb58-2a06-426e-b4a7-de94fa50857f)
+- ![InvalidRole](https://github.com/user-attachments/assets/645f0dbe-fa69-4308-bdc3-50f4c92f25ae)
+- ![SetRole](https://github.com/user-attachments/assets/af902c00-cb4a-4cd8-9744-c3a42189a8f8)
+
 
 
 
