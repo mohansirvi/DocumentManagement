@@ -101,6 +101,38 @@ namespace DocumentManagement.Services
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
+        public async Task<AuthResultDto> SetUserRoleAsync(SetUserRoleDto request)
+        {
+            try
+            {
+                if (!_validRoles.Contains(request.Role.ToLower()))
+                {
+                    return new AuthResultDto { Success = false, Message = "Invalid role specified" };
+                }
+
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == request.Username);
+                if (user == null)
+                {
+                    return new AuthResultDto { Success = false, Message = "User not found" };
+                }
+
+                user.Role = request.Role.ToLower();
+                _context.Users.Update(user);
+                await _context.SaveChangesAsync();
+
+                return new AuthResultDto
+                {
+                    Success = true,
+                    Message = $"Role '{request.Role}' assigned to user '{request.Username}'"
+                };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error setting user role");
+                return new AuthResultDto { Success = false, Message = "An error occurred. Please try again later." };
+            }
+        }
+
         private bool IsPasswordStrong(string password)
         {
             return password.Length >= 8 &&
