@@ -6,5 +6,6 @@ namespace DocumentManagement.Services.IService
     {
         Task<AuthResultDto> RegisterAsync(RegisterDto dto);
         Task<AuthResultDto> LoginAsync(LoginDto dto);
+        Task<AuthResultDto> SetUserRoleAsync(SetUserRoleDto request);
     }
 }
