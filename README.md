@@ -137,3 +137,11 @@ The **DocumentManagement** project is a robust and scalable document management 
 - **Authentication**: JWT (JSON Web Tokens)
 - **Logging**: Microsoft.Extensions.Logging
 - **DI Container**: Built-in .NET Dependency Injection
+
+### 🧪 Running Tests
+
+This project uses **xUnit** for unit testing and **Moq** for mocking dependencies.
+
+![FullTestCases](https://github.com/user-attachments/assets/9ba4801f-54cc-4755-b209-87d08e678a41)
+
+
