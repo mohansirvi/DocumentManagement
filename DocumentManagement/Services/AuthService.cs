@@ -9,6 +9,7 @@ using System.Text;
 using DocumentManagement.Utility;
 using Microsoft.Extensions.Options;
 using DocumentManagement.Services.IService;
+using System.Linq;
 
 namespace DocumentManagement.Services
 {
@@ -139,7 +140,7 @@ namespace DocumentManagement.Services
                    password.Any(char.IsUpper) &&
                    password.Any(char.IsLower) &&
                    password.Any(char.IsDigit) &&
-                   password.Any(char.IsSymbol);
+                   password.Any(ch => char.IsSymbol(ch) || char.IsPunctuation(ch));
         }
     }
 }
