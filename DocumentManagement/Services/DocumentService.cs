@@ -35,29 +35,19 @@ namespace DocumentManagement.Services
 
         public async Task<Document> CreateAsync(DocumentDto dto)
         {
-            using var transaction = await _context.Database.BeginTransactionAsync();
-            try
+            var document = new Document
             {
-                var document = new Document
-                {
-                    Title = dto.Title,
-                    Content = dto.Content,
-                    UserId = dto.UserId,
-                    CreatedAt = DateTime.UtcNow
-                };
+                Title = dto.Title,
+                Content = dto.Content,
+                UserId = dto.UserId,
+                CreatedAt = DateTime.UtcNow
+            };
 
-                _context.Documents.Add(document);
-                await _context.SaveChangesAsync();
+            _context.Documents.Add(document);
+            await _context.SaveChangesAsync();
 
-                await transaction.CommitAsync();
-                _logger.LogInformation("Document created with ID: {DocumentId}", document.Id);
-                return document;
-            }
-            catch
-            {
-                await transaction.RollbackAsync();
-                throw;
-            }
+            _logger.LogInformation("Document created with ID: {DocumentId}", document.Id);
+            return document;
         }
 
         public async Task<Document> UpdateAsync(int id, DocumentDto dto)
